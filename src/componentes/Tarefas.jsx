@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { apagarTarefa, atualizarTarefa, criarTarefa, listarTarefas } from "../api/tarefas.js";
 
-const formularioVazio = { titulo: "", descricao: "", concluida: false };
+const formularioVazio = { titulo: "", descricao: "", prioridade:"1", concluida: false };
 
 export function Tarefas() {
   const [tarefas, setTarefas] = useState([]);
@@ -127,6 +127,15 @@ export function Tarefas() {
             onChange={(evento) => atualizarCampo("descricao", evento.target.value)}
             rows={3}
           />
+        </label>
+        <label>
+        Prioridade 
+        <select value={form.prioridade} 
+          onChange={(evento)=>  atualizarCampo("prioridade",evento.target.value)} >
+          <option value="1">1</option>
+          <option value="2" >2</option>
+          <option value="3" >3</option>
+        </select>
         </label>
         <label className="check">
           <input
