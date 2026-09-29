@@ -38,6 +38,7 @@ export function Tarefas() {
     const dados = {
       titulo: form.titulo,
       descricao: form.descricao,
+      prioridade: form.prioridade,
       concluida: form.concluida,
     };
 
