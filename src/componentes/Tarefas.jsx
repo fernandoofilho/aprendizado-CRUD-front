@@ -136,6 +136,13 @@ export function Tarefas() {
           />
           Já concluída
         </label>
+        <label>
+          <input 
+          type="number"
+          checked={form.prioridade}
+          onChange={(evento) => atualizarCampo("prioridade", evento.target.checked)}
+          />
+        </label>
         <div className="acoes">
           <button type="submit">
             <span className={editandoId ? "verbo put" : "verbo post"}>
@@ -176,6 +183,7 @@ export function Tarefas() {
               <span>
                 <strong>{tarefa.titulo}</strong>
                 {tarefa.descricao ? <small>{tarefa.descricao}</small> : null}
+                {tarefa.prioridade ? <small>{tarefa.prioridade}</small> : null}
               </span>
             </label>
             <div className="acoes">
@@ -188,6 +196,7 @@ export function Tarefas() {
                     titulo: tarefa.titulo,
                     descricao: tarefa.descricao ?? "",
                     concluida: tarefa.concluida,
+                    prioridade: tarefa.prioridade
                   });
                 }}
               >
