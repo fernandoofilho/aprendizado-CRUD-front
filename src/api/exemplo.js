@@ -4,6 +4,10 @@ export function ping() {
   return api("/api/exemplo/ping");
 }
 
+export function hora() {
+  return api("/api/exemplo/hora");
+}
+
 export function ecoQuery(mensagem) {
   const params = new URLSearchParams({ mensagem });
   return api(`/api/exemplo/eco?${params.toString()}`);

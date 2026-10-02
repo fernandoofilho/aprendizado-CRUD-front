@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { apagarTarefa, atualizarTarefa, criarTarefa, listarTarefas } from "../api/tarefas.js";
 
-const formularioVazio = { titulo: "", descricao: "", concluida: false };
+const formularioVazio = { titulo: "", descricao: "", concluida: false, prioridade: 0 };
 
 export function Tarefas() {
   const [tarefas, setTarefas] = useState([]);
@@ -39,6 +39,7 @@ export function Tarefas() {
       titulo: form.titulo,
       descricao: form.descricao,
       concluida: form.concluida,
+      prioridade: form.prioridade,
     };
 
     try {
@@ -62,6 +63,7 @@ export function Tarefas() {
         titulo: tarefa.titulo,
         descricao: tarefa.descricao ?? "",
         concluida: !tarefa.concluida,
+        prioridade: tarefa.prioridade ?? 0,
       });
       await carregar();
     } catch (falha) {
@@ -137,10 +139,13 @@ export function Tarefas() {
           Já concluída
         </label>
         <label>
-          <input 
-          type="number"
-          checked={form.prioridade}
-          onChange={(evento) => atualizarCampo("prioridade", evento.target.checked)}
+          Prioridade
+          <input
+            type="number"
+            min="0"
+            step="1"
+            value={form.prioridade}
+            onChange={(evento) => atualizarCampo("prioridade", Number(evento.target.value))}
           />
         </label>
         <div className="acoes">
@@ -183,7 +188,7 @@ export function Tarefas() {
               <span>
                 <strong>{tarefa.titulo}</strong>
                 {tarefa.descricao ? <small>{tarefa.descricao}</small> : null}
-                {tarefa.prioridade ? <small>{tarefa.prioridade}</small> : null}
+                Prioridade: {tarefa.prioridade}
               </span>
             </label>
             <div className="acoes">
@@ -196,7 +201,7 @@ export function Tarefas() {
                     titulo: tarefa.titulo,
                     descricao: tarefa.descricao ?? "",
                     concluida: tarefa.concluida,
-                    prioridade: tarefa.prioridade
+                    prioridade: tarefa.prioridade ?? 0,
                   });
                 }}
               >

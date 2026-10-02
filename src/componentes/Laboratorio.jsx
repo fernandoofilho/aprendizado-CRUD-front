@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ecoBody, ecoQuery, ping } from "../api/exemplo.js";
+import { ecoBody, ecoQuery, ping, hora } from "../api/exemplo.js";
 
 export function Laboratorio() {
   const [mensagem, setMensagem] = useState("olá, API");
@@ -33,6 +33,10 @@ export function Laboratorio() {
         <button type="button" onClick={() => executar(ping)} disabled={carregando}>
           <span className="verbo get">GET</span>
           /api/exemplo/ping
+        </button>
+        <button type="button" onClick={() => executar(hora)} disabled={carregando}>
+          <span className="verbo get">GET</span>
+          /api/exemplo/hora
         </button>
       </div>
 

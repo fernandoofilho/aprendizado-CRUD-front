@@ -17,6 +17,7 @@ button,
 input,
 textarea {
   font: inherit;
+  gap: 12px;
 }
 
 code,
@@ -98,7 +99,7 @@ textarea {
 .acoes,
 .filtros {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   flex-wrap: wrap;
   align-items: end;
 }
