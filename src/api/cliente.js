@@ -20,11 +20,21 @@ export async function api(caminho, { method = "GET", body } = {}) {
     throw new Error(`Não consegui falar com a API em ${BASE_URL}. O backend está rodando?`);
   }
 
-  const dados = await resposta.json().catch(() => null);
+  let dados ;
+
+  if (resposta.status !== 204){
+      try {
+          dados = await resposta.json()
+      } catch {
+          dados = null
+      }
+    }
 
   if (!resposta.ok) {
     throw new Error(dados?.erro ?? `A API respondeu ${resposta.status}.`);
   }
 
   return dados;
+  
+  
 }
